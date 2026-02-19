@@ -2,298 +2,579 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Boda de TuNombre & SuNombre</title>
+    <title>Beatriz & Víctor · 10 Octubre 2026</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Lato:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <script async src="https://tally.so/widgets/embed.js"></script>
     <style>
       :root {
-        --color-principal: #c08497;
-        --color-fondo: #fff9fb;
-        --color-texto: #333333;
+        --crema: #f5f0e8;
+        --beige: #e8ddd0;
+        --marron: #8b6f4e;
+        --marron-oscuro: #5c4433;
+        --texto: #3d2e20;
+        --gris: #7a6a5a;
       }
 
       * {
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
 
       body {
-        font-family:
-          system-ui,
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          sans-serif;
-        margin: 0;
-        line-height: 1.5;
-        color: var(--color-texto);
-        background: var(--color-fondo);
+        font-family: "Lato", sans-serif;
+        font-weight: 300;
+        background-color: var(--crema);
+        color: var(--texto);
+        line-height: 1.7;
       }
 
-      header,
-      section,
-      footer {
-        padding: 20px;
-        max-width: 900px;
-        margin: auto;
-      }
-
-      header {
+      /* ── HERO ─────────────────────────── */
+      .hero {
+        background-color: var(--crema);
         text-align: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding: 60px 24px 40px;
+        position: relative;
       }
 
-      h1,
-      h2 {
-        margin-top: 0;
-      }
-
-      h1 {
-        font-size: 2.2rem;
-        letter-spacing: 0.06em;
-      }
-
-      h2 {
-        font-size: 1.6rem;
-        margin-bottom: 10px;
-      }
-
-      p {
-        margin: 0 0 10px 0;
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 12px;
+      .hero::after {
+        content: "";
         display: block;
-        margin: 16px auto;
+        width: 60px;
+        height: 1px;
+        background: var(--marron);
+        margin: 20px auto 0;
+        opacity: 0.5;
       }
 
+      .hero .badge {
+        font-family: "Lato", sans-serif;
+        font-weight: 300;
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gris);
+        margin-bottom: 18px;
+      }
+
+      .hero h1 {
+        font-family: "Allura", cursive;
+        font-size: clamp(3.2rem, 10vw, 6.2rem);
+        font-weight: 400;
+        color: var(--marron);
+        line-height: 1.05;
+      }
+
+
+      .hero h1 .ampersand {
+        font-style: italic;
+        font-size: 0.7em;
+        color: var(--marron-oscuro);
+      }
+
+      .hero .lema {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 1.15rem;
+        color: var(--gris);
+        margin-top: 16px;
+      }
+
+      .hero img.portada {
+        max-width: 420px;
+        width: 90%;
+        border-radius: 4px;
+        margin: 30px auto 0;
+        display: block;
+        box-shadow: 0 8px 30px rgba(92, 68, 51, 0.12);
+      }
+
+      /* ── NAV ──────────────────────────── */
       nav {
-        margin-top: 20px;
+        background: var(--beige);
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 8px;
+        gap: 0;
+        border-top: 1px solid rgba(139, 111, 78, 0.2);
+        border-bottom: 1px solid rgba(139, 111, 78, 0.2);
       }
 
       nav a {
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--marron-oscuro);
         text-decoration: none;
-        color: var(--color-principal);
-        font-weight: 500;
-        padding: 6px 10px;
-        border-radius: 999px;
-        border: 1px solid var(--color-principal);
-        font-size: 0.9rem;
+        padding: 14px 20px;
+        transition: background 0.2s;
       }
 
       nav a:hover {
-        background: var(--color-principal);
-        color: white;
+        background: rgba(139, 111, 78, 0.1);
       }
 
-      .badge-fecha {
-        display: inline-block;
-        padding: 6px 12px;
-        border-radius: 999px;
-        background: rgba(192, 132, 151, 0.1);
-        color: var(--color-principal);
-        font-size: 0.9rem;
+      /* ── SECCIONES GENERALES ──────────── */
+      section {
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 60px 24px;
+      }
+
+      section + section {
+        border-top: 1px solid rgba(139, 111, 78, 0.15);
+      }
+
+      .sec-titulo {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 300;
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        color: var(--marron);
+        text-align: center;
         margin-bottom: 8px;
       }
 
-      .subtitulo {
-        font-size: 1rem;
-        color: #555555;
+      .sec-titulo.italic {
+        font-style: italic;
       }
 
-      .bloque {
+      .sec-subtitulo {
+        text-align: center;
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gris);
+        margin-bottom: 32px;
+      }
+
+      .linea-decorativa {
+        width: 50px;
+        height: 1px;
+        background: var(--marron);
+        opacity: 0.4;
+        margin: 12px auto 32px;
+      }
+
+      /* ── CARDS INFO ───────────────────── */
+      .cards-info {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .card-info {
+        flex: 1;
+        min-width: 200px;
+        max-width: 300px;
         background: white;
-        border-radius: 12px;
-        padding: 16px 18px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
-        margin-bottom: 20px;
+        border: 1px solid rgba(139, 111, 78, 0.2);
+        border-radius: 2px;
+        padding: 28px 24px;
+        text-align: center;
       }
 
-      .lista-simple {
-        padding-left: 18px;
-        margin: 0;
+      .card-info .icono {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        display: block;
       }
 
-      .lista-simple li {
-        margin-bottom: 4px;
+      .card-info h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 1.3rem;
+        color: var(--marron);
+        margin-bottom: 10px;
+        font-weight: 400;
       }
 
-      iframe {
+      .card-info p {
+        font-size: 0.9rem;
+        color: var(--gris);
+        line-height: 1.7;
+      }
+
+      .card-info strong {
+        color: var(--texto);
+        font-weight: 400;
+      }
+
+      /* ── TEXTO CENTRAL ────────────────── */
+      .texto-central {
+        text-align: center;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        color: var(--gris);
+        font-style: italic;
+        max-width: 560px;
+        margin: 0 auto 36px;
+        line-height: 1.9;
+      }
+
+      /* ── DETALLES EXTRA ───────────────── */
+      .detalles-grid {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 16px;
+      }
+
+      .detalle-item {
+        flex: 1;
+        min-width: 180px;
+        max-width: 240px;
+        text-align: center;
+        padding: 20px 16px;
+        border: 1px solid rgba(139, 111, 78, 0.15);
+        border-radius: 2px;
+        background: white;
+      }
+
+      .detalle-item .etiqueta {
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gris);
+        margin-bottom: 6px;
+      }
+
+      .detalle-item .valor {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.05rem;
+        color: var(--texto);
+      }
+
+      /* ── MAPA ─────────────────────────── */
+      .mapa-wrapper {
+        border: 1px solid rgba(139, 111, 78, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-top: 24px;
+      }
+
+      .mapa-wrapper iframe {
         width: 100%;
-        max-width: 100%;
+        height: 320px;
         border: 0;
-        border-radius: 12px;
+        display: block;
       }
 
-      .btn {
+      .mapa-enlace {
+        display: block;
+        text-align: center;
+        margin-top: 14px;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--marron);
+        text-decoration: none;
+      }
+
+      .mapa-enlace:hover {
+        text-decoration: underline;
+      }
+
+      /* ── FORMULARIOS ──────────────────── */
+      .form-wrapper {
+        border: 1px solid rgba(139, 111, 78, 0.15);
+        border-radius: 2px;
+        overflow: hidden;
+        background: white;
+        margin-top: 16px;
+      }
+
+      .form-wrapper iframe {
+        width: 100%;
+        border: 0;
+        display: block;
+      }
+
+      /* ── FOTOS ────────────────────────── */
+      .btn-fotos {
         display: inline-block;
-        padding: 10px 18px;
-        background: var(--color-principal);
+        margin-top: 20px;
+        padding: 13px 32px;
+        background: var(--marron);
         color: white;
         text-decoration: none;
-        border-radius: 999px;
-        margin-top: 10px;
-        font-weight: 500;
-        font-size: 0.95rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        border-radius: 1px;
+        transition: background 0.2s;
       }
 
-      .btn:hover {
-        opacity: 0.9;
+      .btn-fotos:hover {
+        background: var(--marron-oscuro);
       }
 
-      footer {
+      .fotos-center {
         text-align: center;
-        font-size: 0.8rem;
-        color: #777777;
-        padding-bottom: 30px;
       }
 
-      /* Responsive pequeños ajustes */
-      @media (max-width: 600px) {
-        header {
-          padding-top: 30px;
-          padding-bottom: 30px;
+      /* ── FOOTER ───────────────────────── */
+      footer {
+        background: var(--beige);
+        text-align: center;
+        padding: 40px 24px;
+        border-top: 1px solid rgba(139, 111, 78, 0.2);
+      }
+
+      footer .footer-nombres {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        font-weight: 300;
+        color: var(--marron);
+        margin-bottom: 6px;
+      }
+
+      footer p {
+        font-size: 0.8rem;
+        color: var(--gris);
+        letter-spacing: 0.1em;
+      }
+
+      /* ── RESPONSIVE ───────────────────── */
+      @media (max-width: 560px) {
+        .cards-info {
+          flex-direction: column;
+          align-items: center;
         }
-        h1 {
-          font-size: 1.8rem;
-        }
-        h2 {
-          font-size: 1.4rem;
+        .card-info {
+          max-width: 100%;
         }
         nav a {
-          font-size: 0.8rem;
-          padding: 5px 8px;
+          padding: 12px 12px;
+          font-size: 0.7rem;
+          letter-spacing: 0.1em;
         }
       }
     </style>
   </head>
   <body>
-    <header id="inicio">
-      <span class="badge-fecha">12 de octubre de 2026 · Dos Hermanas</span>
-      <h1>TuNombre & SuNombre</h1>
-      <p class="subtitulo">
-        Nos casamos y queremos compartir este día contigo.
+    <!-- ── HERO ────────────────────────────────── -->
+    <div class="hero">
+      <div id="countdown" style="margin-top:20px; font-size:0.9rem; color:#7a6a5a; letter-spacing:0.15em; text-transform:uppercase;">
+      Faltan <span id="cd-days">--</span>d
+      <span id="cd-hours">--</span>h
+      <span id="cd-mins">--</span>m
+      <span id="cd-secs">--</span>s
+    </div>
+      <p class="badge">10 · Octubre · 2026 &nbsp;|&nbsp; 18:00 h</p>
+      <h1>Beatriz <span class="ampersand">&amp;</span> Víctor</h1>
+      <p class="lema">Poneros guapos… ¡que nos vamos de boda!</p>
+      <!-- Sustituye portada.jpg por tu imagen -->
+      <img class="portada" src="Brindis pareja.png" alt="Beatriz y Víctor" />
+    </div>
+
+    <!-- ── NAV ─────────────────────────────────── -->
+    <nav>
+      <a href="#info">El día</a>
+      <a href="#llegar">Cómo llegar</a>
+      <a href="#rsvp">Confirmar asistencia</a>
+      <a href="#musica">Música</a>
+      <a href="#fotos">Fotos</a>
+      <a href="#regalo">Regalo</a>
+    </nav>
+
+    <!-- ── INFO ────────────────────────────────── -->
+    <section id="info">
+      <h2 class="sec-titulo italic">El día más especial</h2>
+      <div class="linea-decorativa"></div>
+      <p class="texto-central">
+        Queremos recordar este día para siempre, y vuestra compañía hará que sea
+        verdaderamente inolvidable. Nos hace muchísima ilusión que podáis
+        compartir con nosotros un momento tan especial.
       </p>
 
-      <!-- Portada: cambia la ruta de la imagen -->
-      <img src="PORTADA.jpg" alt="Foto de la pareja" />
+      <div class="cards-info">
+        <div class="card-info">
+          <span class="icono">⛪</span>
+          <h3>Ceremonia</h3>
+          <p>
+            <strong>18:00 h</strong><br />
+            Parroquia Santa María Magdalena<br />
+            Dos Hermanas
+          </p>
+        </div>
+        <div class="card-info">
+          <span class="icono">📅</span>
+          <h3>Fecha</h3>
+          <p>
+            <strong>10 de octubre de 2026</strong><br /><br />
+            Os esperamos con mucha ilusión
+          </p>
+        </div>
+        <div class="card-info">
+          <span class="icono">🌿</span>
+          <h3>Celebración</h3>
+          <p>
+            <strong>20:00 h</strong><br />
+            El Jardín Don Juan<br />
+            Utrera
+          </p>
+        </div>
+      </div>
 
-      <nav>
-        <a href="#info">Info</a>
-        <a href="#mapa">Cómo llegar</a>
-        <a href="#rsvp">Confirmar asistencia</a>
-        <a href="#musica">Música</a>
-        <a href="#fotos">Fotos</a>
-      </nav>
-    </header>
-
-    <section id="info">
-      <div class="bloque">
-        <h2>Información del día</h2>
-        <p><strong>Ceremonia</strong></p>
-        <ul class="lista-simple">
-          <li>Hora: 17:00</li>
-          <li>Lugar: Nombre del lugar de la ceremonia</li>
-          <li>Dirección: Calle, ciudad</li>
-        </ul>
-
-        <p><strong>Celebración</strong></p>
-        <ul class="lista-simple">
-          <li>Hora: 20:00</li>
-          <li>Lugar: Nombre de la finca/restaurante</li>
-          <li>Dirección: Calle, ciudad</li>
-        </ul>
-
-        <p>
-          <strong>Dress code</strong>: Indica aquí si hay alguna sugerencia
-          (formal, cóctel, etc.).
-        </p>
-        <p>
-          <strong>Niños</strong>: Explica si vienen todos los peques, solo
-          familiares cercanos, etc.
-        </p>
+            <div class="detalles-grid">
+          <div class="detalle-item">
+            <p class="etiqueta">📞 Contacto</p>
+            <p class="valor">
+              Víctor · 609 491 817<br />
+              Beatriz · 633 340 858
+            </p>
+          </div>
+        </div>  
       </div>
     </section>
 
-    <section id="mapa">
-      <div class="bloque">
-        <h2>Cómo llegar</h2>
-        <p>
-          Aquí tienes la ubicación de la celebración para que puedas llegar
-          fácilmente.
-        </p>
+    <!-- ── CÓMO LLEGAR ──────────────────────────── -->
+    <section id="llegar">
+      <h2 class="sec-titulo italic">Cómo llegar</h2>
+      <div class="linea-decorativa"></div>
 
-        <!-- Sustituye SRC_MAPA_AQUI por el src del iframe de Google Maps -->
-        <iframe
-          src="SRC_MAPA_AQUI"
-          height="300"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        >
-        </iframe>
+      <p class="texto-central">
+        La ceremonia se celebra en la Parroquia Santa María Magdalena (Dos
+        Hermanas) y la celebración en El Jardín Don Juan (Utrera).
+      </p>
 
-        <p style="margin-top: 10px">
-          También puedes abrirlo directamente en Google Maps:
-          <a href="ENLACE_GOOGLE_MAPS_AQUI" target="_blank">Ver ruta</a>
-        </p>
+      <p
+        style="
+          text-align: center;
+          font-size: 0.85rem;
+          color: var(--gris);
+          margin-bottom: 8px;
+          letter-spacing: 0.08em;
+        "
+      >
+        CEREMONIA · Dos Hermanas
+      </p>
+      <div class="mapa-wrapper">
+        <!-- Sustituye SRC_MAPA_CEREMONIA por el iframe src de Google Maps -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d709.0818090635868!2d-5.921943528734531!3d37.28357273645092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd12705dd3ba8223%3A0x41b29bf3e008fbec!2sParroquia%20Santa%20Mar%C3%ADa%20Magdalena!5e0!3m2!1ses!2ses!4v1771535138798!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
+      <a class="mapa-enlace" href="https://maps.app.goo.gl/N7Liz145r2deyqsr5" target="_blank">
+        Abrir en Google Maps →
+      </a>
+
+      <p
+        style="
+          text-align: center;
+          font-size: 0.85rem;
+          color: var(--gris);
+          margin: 32px 0 8px;
+          letter-spacing: 0.08em;
+        "
+      >
+        CELEBRACIÓN · El Jardín Don Juan, Utrera
+      </p>
+      <div class="mapa-wrapper">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3178.153053041541!2d-5.796867125734483!3d37.196593972136704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd127fa65fc2e1f1%3A0xec7602d4d4828cbc!2sSal%C3%B3n%20de%20celebraciones%20El%20Jard%C3%ADn%20Don%20Juan%20%7C%20Sevilla%20%7C%20Grupo%20Juan%20el%20Marchenero!5e0!3m2!1ses!2ses!4v1771535629381!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <a class="mapa-enlace" href="https://maps.app.goo.gl/vNEdTnyhWLua7nst9" target="_blank"
+        >Abrir en Google Maps →</a
+      >
     </section>
 
+    <!-- ── RSVP ─────────────────────────────────── -->
     <section id="rsvp">
-      <div class="bloque">
-        <h2>Confirmar asistencia</h2>
-        <p>
-          Por favor, rellena este formulario para confirmar si puedes
-          acompañarnos y, si vienes, con cuántas personas.
-        </p>
-
-        <!-- Sustituye SRC_FORM_RSVP_AQUI por el src del iframe de tu Google Form de RSVP -->
-        <iframe src="SRC_FORM_RSVP_AQUI" height="650"> </iframe>
-      </div>
+      <h2 class="sec-titulo italic">Confirmar asistencia</h2>
+      <div class="linea-decorativa"></div>
+      <p class="texto-central">
+        Por favor, confirma tu asistencia antes del
+        <strong>1 de septiembre de 2026</strong>. Rellena el formulario para que
+        podamos organizarlo todo con cariño.
+      </p>
+      <iframe
+        data-tally-src="https://tally.so/embed/5Bzlab?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy"
+        width="100%"
+        height="700"
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+        title="Confirmación de asistencia · Beatriz & Víctor">
+      </iframe>
     </section>
 
+
+    <!-- ── MÚSICA ────────────────────────────────── -->
     <section id="musica">
-      <div class="bloque">
-        <h2>Propón tu canción</h2>
-        <p>
-          Nos hará mucha ilusión que nos ayudes a elegir la banda sonora de la
-          boda. Puedes sugerir las canciones que te gustaría escuchar.
-        </p>
-
-        <!-- Sustituye SRC_FORM_MUSICA_AQUI por el src del iframe de tu Google Form de música -->
-        <iframe src="SRC_FORM_MUSICA_AQUI" height="650"> </iframe>
+      <h2 class="sec-titulo italic">Propón tu canción</h2>
+      <div class="linea-decorativa"></div>
+      <p class="texto-central">
+        Ayúdanos a crear la banda sonora perfecta de nuestra boda. ¿Qué canción
+        no puede faltar?
+      </p>
+      <div class="form-wrapper">
+        <!-- Sustituye SRC_FORM_MUSICA por el src del iframe de tu Google Form de música -->
+        <iframe src="SRC_FORM_MUSICA" height="550"></iframe>
       </div>
     </section>
 
+    <!-- ── FOTOS ─────────────────────────────────── -->
     <section id="fotos">
-      <div class="bloque">
-        <h2>Comparte tus fotos</h2>
-        <p>
-          Durante la boda, nos encantaría que hicieras fotos y las compartieras
-          con nosotros y el resto de invitados.
+      <h2 class="sec-titulo italic">Comparte tus fotos</h2>
+      <div class="linea-decorativa"></div>
+      <div class="fotos-center">
+        <p class="texto-central">
+          Haz fotos durante el día y súbelas a nuestro álbum compartido. Así
+          guardaremos juntos todos los momentos especiales.
         </p>
-        <p>Puedes subirlas a este álbum compartido:</p>
-
-        <!-- Sustituye ENLACE_FOTOS_AQUI por el enlace a tu carpeta de Drive o álbum de fotos -->
-        <a href="ENLACE_FOTOS_AQUI" class="btn" target="_blank"
+        <!-- Sustituye ENLACE_FOTOS por tu carpeta de Drive o álbum de Google Fotos -->
+        <a href="ENLACE_FOTOS" class="btn-fotos" target="_blank"
           >Subir fotos de la boda</a
         >
-
-        <p style="margin-top: 10px">
-          También encontrarás este enlace en un código QR el día de la boda para
-          que puedas acceder fácilmente desde tu móvil.
+        <p style="margin-top: 16px; font-size: 0.8rem; color: var(--gris)">
+          También encontrarás un código QR el día de la boda.
         </p>
       </div>
     </section>
 
+    <!-- ── FOOTER ────────────────────────────────── -->
     <footer>
-      <p>Gracias por formar parte de este día tan especial.</p>
+      <p class="footer-nombres">Beatriz &amp; Víctor</p>
+      <p>10 · Octubre · 2026</p>
+      <p style="margin-top: 8px">Con todo nuestro amor ♡</p>
     </footer>
+    <script>
+  // Fecha de la boda: 10 octubre 2026, 18:00 (hora local)
+  const weddingDate = new Date("2026-10-10T18:00:00");
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").textContent =
+        "¡Hoy es el gran día!";
+      clearInterval(timerId);
+      return;
+    }
+
+    const totalSeconds = Math.floor(diff / 1000);
+    const days = Math.floor(totalSeconds / (3600 * 24));
+    const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+
+    document.getElementById("cd-days").textContent = days;
+    document.getElementById("cd-hours").textContent = String(hours).padStart(2, "0");
+    document.getElementById("cd-mins").textContent = String(mins).padStart(2, "0");
+    document.getElementById("cd-secs").textContent = String(secs).padStart(2, "0");
+  }
+
+  const timerId = setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
   </body>
 </html>

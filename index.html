@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Boda de TuNombre & SuNombre</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --color-principal: #c08497;
+        --color-fondo: #fff9fb;
+        --color-texto: #333333;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        margin: 0;
+        line-height: 1.5;
+        color: var(--color-texto);
+        background: var(--color-fondo);
+      }
+
+      header,
+      section,
+      footer {
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+      }
+
+      header {
+        text-align: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      h1,
+      h2 {
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+        letter-spacing: 0.06em;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin: 0 0 10px 0;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        display: block;
+        margin: 16px auto;
+      }
+
+      nav {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: var(--color-principal);
+        font-weight: 500;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--color-principal);
+        font-size: 0.9rem;
+      }
+
+      nav a:hover {
+        background: var(--color-principal);
+        color: white;
+      }
+
+      .badge-fecha {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(192, 132, 151, 0.1);
+        color: var(--color-principal);
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+      }
+
+      .subtitulo {
+        font-size: 1rem;
+        color: #555555;
+      }
+
+      .bloque {
+        background: white;
+        border-radius: 12px;
+        padding: 16px 18px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        margin-bottom: 20px;
+      }
+
+      .lista-simple {
+        padding-left: 18px;
+        margin: 0;
+      }
+
+      .lista-simple li {
+        margin-bottom: 4px;
+      }
+
+      iframe {
+        width: 100%;
+        max-width: 100%;
+        border: 0;
+        border-radius: 12px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 18px;
+        background: var(--color-principal);
+        color: white;
+        text-decoration: none;
+        border-radius: 999px;
+        margin-top: 10px;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .btn:hover {
+        opacity: 0.9;
+      }
+
+      footer {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #777777;
+        padding-bottom: 30px;
+      }
+
+      /* Responsive pequeños ajustes */
+      @media (max-width: 600px) {
+        header {
+          padding-top: 30px;
+          padding-bottom: 30px;
+        }
+        h1 {
+          font-size: 1.8rem;
+        }
+        h2 {
+          font-size: 1.4rem;
+        }
+        nav a {
+          font-size: 0.8rem;
+          padding: 5px 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="inicio">
+      <span class="badge-fecha">12 de octubre de 2026 · Dos Hermanas</span>
+      <h1>TuNombre & SuNombre</h1>
+      <p class="subtitulo">
+        Nos casamos y queremos compartir este día contigo.
+      </p>
+
+      <!-- Portada: cambia la ruta de la imagen -->
+      <img src="PORTADA.jpg" alt="Foto de la pareja" />
+
+      <nav>
+        <a href="#info">Info</a>
+        <a href="#mapa">Cómo llegar</a>
+        <a href="#rsvp">Confirmar asistencia</a>
+        <a href="#musica">Música</a>
+        <a href="#fotos">Fotos</a>
+      </nav>
+    </header>
+
+    <section id="info">
+      <div class="bloque">
+        <h2>Información del día</h2>
+        <p><strong>Ceremonia</strong></p>
+        <ul class="lista-simple">
+          <li>Hora: 17:00</li>
+          <li>Lugar: Nombre del lugar de la ceremonia</li>
+          <li>Dirección: Calle, ciudad</li>
+        </ul>
+
+        <p><strong>Celebración</strong></p>
+        <ul class="lista-simple">
+          <li>Hora: 20:00</li>
+          <li>Lugar: Nombre de la finca/restaurante</li>
+          <li>Dirección: Calle, ciudad</li>
+        </ul>
+
+        <p>
+          <strong>Dress code</strong>: Indica aquí si hay alguna sugerencia
+          (formal, cóctel, etc.).
+        </p>
+        <p>
+          <strong>Niños</strong>: Explica si vienen todos los peques, solo
+          familiares cercanos, etc.
+        </p>
+      </div>
+    </section>
+
+    <section id="mapa">
+      <div class="bloque">
+        <h2>Cómo llegar</h2>
+        <p>
+          Aquí tienes la ubicación de la celebración para que puedas llegar
+          fácilmente.
+        </p>
+
+        <!-- Sustituye SRC_MAPA_AQUI por el src del iframe de Google Maps -->
+        <iframe
+          src="SRC_MAPA_AQUI"
+          height="300"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
+        </iframe>
+
+        <p style="margin-top: 10px">
+          También puedes abrirlo directamente en Google Maps:
+          <a href="ENLACE_GOOGLE_MAPS_AQUI" target="_blank">Ver ruta</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="rsvp">
+      <div class="bloque">
+        <h2>Confirmar asistencia</h2>
+        <p>
+          Por favor, rellena este formulario para confirmar si puedes
+          acompañarnos y, si vienes, con cuántas personas.
+        </p>
+
+        <!-- Sustituye SRC_FORM_RSVP_AQUI por el src del iframe de tu Google Form de RSVP -->
+        <iframe src="SRC_FORM_RSVP_AQUI" height="650"> </iframe>
+      </div>
+    </section>
+
+    <section id="musica">
+      <div class="bloque">
+        <h2>Propón tu canción</h2>
+        <p>
+          Nos hará mucha ilusión que nos ayudes a elegir la banda sonora de la
+          boda. Puedes sugerir las canciones que te gustaría escuchar.
+        </p>
+
+        <!-- Sustituye SRC_FORM_MUSICA_AQUI por el src del iframe de tu Google Form de música -->
+        <iframe src="SRC_FORM_MUSICA_AQUI" height="650"> </iframe>
+      </div>
+    </section>
+
+    <section id="fotos">
+      <div class="bloque">
+        <h2>Comparte tus fotos</h2>
+        <p>
+          Durante la boda, nos encantaría que hicieras fotos y las compartieras
+          con nosotros y el resto de invitados.
+        </p>
+        <p>Puedes subirlas a este álbum compartido:</p>
+
+        <!-- Sustituye ENLACE_FOTOS_AQUI por el enlace a tu carpeta de Drive o álbum de fotos -->
+        <a href="ENLACE_FOTOS_AQUI" class="btn" target="_blank"
+          >Subir fotos de la boda</a
+        >
+
+        <p style="margin-top: 10px">
+          También encontrarás este enlace en un código QR el día de la boda para
+          que puedas acceder fácilmente desde tu móvil.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Gracias por formar parte de este día tan especial.</p>
+    </footer>
+  </body>
+</html>

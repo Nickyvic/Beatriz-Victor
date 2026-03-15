@@ -138,42 +138,104 @@
   /* ── NAV ──────────────────────────── */
   nav {
     background: var(--beige);
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto; /* scroll horizontal en móvil */
-    -webkit-overflow-scrolling: touch;
-    border-top: 1px solid rgba(139, 111, 78, 0.2);
-    border-bottom: 1px solid rgba(139, 111, 78, 0.2);
+    border-top: 1px solid rgba(139,111,78,0.2);
+    border-bottom: 1px solid rgba(139,111,78,0.2);
     position: sticky;
     top: 0;
     z-index: 100;
-    /* ocultar scrollbar pero mantener scroll */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    min-height: 48px;
   }
 
-  nav::-webkit-scrollbar { display: none; }
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--marron-oscuro);
+    transition: all 0.3s;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 48px;
+    left: 0;
+    right: 0;
+    background: var(--beige);
+    border-bottom: 1px solid rgba(139,111,78,0.2);
+    padding: 8px 0;
+    z-index: 99;
+  }
+
+  .nav-links.open { display: flex; }
 
   nav a {
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 0.7rem;
-    letter-spacing: 0.14em;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--marron-oscuro);
     text-decoration: none;
-    padding: 14px 16px;
-    white-space: nowrap; /* no romper texto */
-    transition: background 0.2s;
-    /* área táctil mínima recomendada */
+    padding: 14px 24px;
+    white-space: nowrap;
     min-height: 44px;
     display: flex;
     align-items: center;
+    transition: background 0.2s;
+    border-bottom: 1px solid rgba(139,111,78,0.08);
   }
 
-  nav a:hover,
-  nav a:active { background: rgba(139, 111, 78, 0.1); }
+  nav a:last-child { border-bottom: none; }
+  nav a:active { background: rgba(139,111,78,0.1); }
+
+  nav::before {
+    content: "B & V";
+    font-family: "Allura", cursive;
+    font-size: 1.4rem;
+    color: var(--marron);
+  }
+
+  @media (min-width: 600px) {
+    .nav-toggle { display: none; }
+    nav { justify-content: center; padding: 0; }
+    nav::before { display: none; }
+    .nav-links {
+      display: flex !important;
+      flex-direction: row;
+      position: static;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    nav a {
+      padding: 14px 20px;
+      border-bottom: none;
+      font-size: 0.7rem;
+    }
+  }
+
+
 
   /* ── SECCIONES ────────────────────── */
   section {
@@ -420,17 +482,22 @@
       <span class="badge">10 · Octubre · 2026 &nbsp;|&nbsp; 18:00 h</span>
       <h1>Beatriz <span class="ampersand">&amp;</span> Víctor</h1>
       <p class="lema">Poneros guapos… ¡que nos vamos de boda!</p>
-      <img class="portada" src="Brindis-pareja.png" alt="Beatriz y Víctor"/>
+      <img class="portada" src="Brindis-pareja.png" alt="Beatriz y Víctor" />
     </div>
 
     <!-- ── NAV (sticky) ─────────────────────────── -->
     <nav>
-      <a href="#info">El día</a>
-      <a href="#llegar">Cómo llegar</a>
-      <a href="#rsvp">Confirmar asistencia</a>
-      <a href="#musica">Música</a>
-      <a href="#fotos">Fotos</a>
-    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#info"   onclick="cerrarNav()">El día</a>
+      <a href="#llegar" onclick="cerrarNav()">Cómo llegar</a>
+      <a href="#rsvp"   onclick="cerrarNav()">Confirmar asistencia</a>
+      <a href="#musica" onclick="cerrarNav()">Música</a>
+      <a href="#fotos"  onclick="cerrarNav()">Fotos</a>
+    </div>
+  </nav>
 
     <!-- ── INFO ────────────────────────────────── -->
     <section id="info">
@@ -626,6 +693,26 @@
 
     setFormularioPorTipo();
   </script>
+  <script>
+    const navToggle = document.getElementById("navToggle");
+    const navLinks  = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    function cerrarNav() {
+      navLinks.classList.remove("open");
+    }
+
+    // Cerrar al hacer clic fuera
+    document.addEventListener("click", (e) => {
+      if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navLinks.classList.remove("open");
+      }
+    });
+  </script>
+
 
   </body>
 </html>

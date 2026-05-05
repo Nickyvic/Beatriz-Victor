@@ -85,8 +85,8 @@
     .splash-bg {
       position: absolute;
       inset: 0;
-      background-color: #1a0f06;
-      background-image: url("Foto-Pose.jpg"), url("Foto-Pose.jpg");
+      background-color: var(--crema);
+      background-image: url("Foto-Pose.jpg");
       background-repeat: no-repeat;
       background-position: center center;
       background-size: contain;
@@ -1018,8 +1018,7 @@
   <!-- ══ UBICACIONES ══════════════════════════ -->
   <section id="llegar">
     <div class="sec-header reveal">
-      <span class="sec-eyebrow">Dónde encontrarnos</span>
-      <h2 class="sec-titulo">Cómo llegar</h2>
+      <h2 class="sec-titulo">Dónde encontrarnos</h2>
       <div class="linea"></div>
     </div>
 
@@ -1213,6 +1212,9 @@
     let musicStarted = false;
 
     function openInvitation(withMusic) {
+      // Forzar scroll al inicio ANTES de que el splash desaparezca
+      window.scrollTo({ top: 0, behavior: "instant" });
+
       splash.classList.add("out");
       musicBtn.classList.add("show");
 
@@ -1226,6 +1228,8 @@
 
       setTimeout(() => {
         splash.style.display = "none";
+        // Segundo scroll por si el navegador restauró posición durante la transición
+        window.scrollTo({ top: 0, behavior: "instant" });
         document.body.classList.add("reveal-ready");
         initReveal();
       }, 900);

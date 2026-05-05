@@ -209,7 +209,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-color: #1a0f06;
+      background-color: var(--crema);
       background-image: url("Foto-Pose.jpg");
       background-repeat: no-repeat;
       background-position: center center;
@@ -239,17 +239,52 @@
 
     /* Fecha (aparece al scroll) */
     #heroFecha {
-      font-family: "Cormorant Garamond", serif;
-      font-style: italic;
-      font-size: clamp(1.3rem, 5.5vw, 1.8rem);
-      color: rgba(255,255,255,0.9);
-      letter-spacing: 0.06em;
       text-align: center;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+      text-shadow: 0 2px 16px rgba(0,0,0,0.35);
       margin-bottom: 28px;
       opacity: 0;
       transform: translateY(14px);
       will-change: opacity, transform;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .fecha-dia {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(2rem, 8vw, 3rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.95);
+      line-height: 1;
+      letter-spacing: 0.04em;
+    }
+
+    .fecha-mes {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: clamp(1.2rem, 5vw, 1.7rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+    }
+
+    .fecha-sep {
+      width: 36px;
+      height: 1px;
+      background: rgba(255,255,255,0.5);
+      margin: 2px auto;
+    }
+
+    .fecha-hora {
+      font-family: "Lato", sans-serif;
+      font-size: clamp(0.7rem, 2.8vw, 0.88rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
     }
 
     /* Contador circular (aparece al scroll) */
@@ -262,34 +297,36 @@
     /* Indicador scroll (desaparece al deslizar) */
     #heroScrollHint {
       position: absolute;
-      bottom: 28px;
+      bottom: 32px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
-      color: rgba(255,255,255,0.45);
+      gap: 6px;
+      color: rgba(255,255,255,0.92);
       will-change: opacity;
-    }
-
-    .hint-line {
-      width: 1px;
-      height: 32px;
-      background: rgba(255,255,255,0.3);
-      animation: hint-line 1.8s ease-in-out infinite;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+      white-space: nowrap;
     }
 
     .hint-text {
-      font-size: 0.55rem;
-      letter-spacing: 0.22em;
+      font-family: "Lato", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
-    @keyframes hint-line {
-      0%, 100% { transform: scaleY(0); transform-origin: top; opacity: 0; }
-      40%       { transform: scaleY(1); transform-origin: top; opacity: 1; }
-      80%       { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+    .hint-arrow {
+      font-size: 1.6rem;
+      line-height: 1;
+      animation: hint-bounce 1.6s ease-in-out infinite;
+    }
+
+    @keyframes hint-bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50%       { transform: translateY(7px); opacity: 1; }
     }
 
     /* ─── CONTADOR CIRCULAR ──────────────── */
@@ -912,7 +949,12 @@
       <div class="hero-inner">
 
         <!-- Fecha (aparece en el primer tercio del scroll) -->
-        <div id="heroFecha">10 de octubre de 2026 · 18:00 h</div>
+        <div id="heroFecha">
+          <span class="fecha-dia">10</span>
+          <span class="fecha-mes">de octubre de 2026</span>
+          <div class="fecha-sep"></div>
+          <span class="fecha-hora">18:00 h</span>
+        </div>
 
         <!-- Contador circular -->
         <div id="heroCountdownWrap">
@@ -950,8 +992,8 @@
 
       <!-- Pista de scroll -->
       <div id="heroScrollHint">
-        <div class="hint-line"></div>
         <span class="hint-text">Desliza</span>
+        <span class="hint-arrow">↓</span>
       </div>
     </div>
 

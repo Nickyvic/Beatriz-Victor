@@ -244,7 +244,7 @@
     /* Indicador scroll (desaparece al deslizar) */
     #heroScrollHint {
       position: absolute;
-      bottom: 32px;
+      bottom: 68px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -356,6 +356,17 @@
     .cd-heart {
       font-size: 1rem;
       color: var(--marron);
+      line-height: 1;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    .cd-fecha {
+      font-family: "Lato", sans-serif;
+      font-size: clamp(0.52rem, 1.8vw, 0.62rem);
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gris);
       line-height: 1;
       animation: heartbeat 1.5s ease-in-out infinite;
     }
@@ -850,10 +861,84 @@
     footer p { font-size: 0.8rem; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; }
     footer p + p { margin-top: 7px; }
 
+    /* ─── BOTÓN CALENDARIO ──────────────── */
+    .cal-wrap {
+      position: relative;
+      display: inline-block;
+      margin-top: 32px;
+    }
+
+    .cal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      border: 1.5px solid var(--marron);
+      border-radius: var(--radio-sm);
+      background: transparent;
+      color: var(--marron);
+      font-family: "Lato", sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cal-btn:hover, .cal-btn:active { background: var(--marron); color: #fff; }
+
+    .cal-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border: 1px solid var(--beige-oscuro);
+      border-radius: var(--radio-sm);
+      box-shadow: 0 8px 32px var(--sombra-fuerte);
+      min-width: 210px;
+      overflow: hidden;
+      z-index: 300;
+    }
+    .cal-dropdown.open { display: block; }
+
+    .cal-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--beige);
+      background: none;
+      text-align: left;
+      font-family: "Lato", sans-serif;
+      font-size: 0.8rem;
+      color: var(--texto);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .cal-option:last-child { border-bottom: none; }
+    .cal-option:hover, .cal-option:active { background: var(--beige); }
+
     /* ═══════════════════════════════════════
        DESKTOP
     ═══════════════════════════════════════ */
     @media (min-width: 600px) {
+      /* foto portrait en pantalla landscape: contain para ver la pareja completa */
+      .splash-bg,
+      .hero-bg {
+        background-size: contain;
+        background-position: center center;
+      }
+
+      /* nombres más pequeños en desktop para que no desborden */
+      .splash-nombres {
+        font-size: clamp(2rem, 5vw, 3.6rem);
+      }
+
       .nav-toggle { display: none; }
       nav { padding: 0 28px; }
       .nav-links {
@@ -941,6 +1026,7 @@
                 </div>
               </div>
               <span class="cd-heart">♥</span>
+              <span class="cd-fecha">10 · octubre · 2026</span>
             </div>
           </div>
         </div>
@@ -1014,6 +1100,18 @@
         <p class="tl-desc">Música, baile y recuerdos para siempre</p>
       </div>
     </div>
+
+    <div style="text-align:center" class="reveal">
+      <div class="cal-wrap" id="calWrap">
+        <button class="cal-btn" onclick="toggleCal()">📅 &nbsp;Añadir al calendario</button>
+        <div class="cal-dropdown" id="calDropdown">
+          <button class="cal-option" onclick="calGoogle()">🗓&nbsp; Google Calendar</button>
+          <button class="cal-option" onclick="calICS()">📱&nbsp; Apple / iCal</button>
+          <button class="cal-option" onclick="calICS()">💼&nbsp; Outlook</button>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- ══ UBICACIONES ══════════════════════════ -->
@@ -1158,7 +1256,6 @@
 
   <!-- ══ FOOTER ═══════════════════════════════ -->
   <footer>
-    <p class="footer-nombres">Beatriz &amp; Víctor</p>
     <p>10 · Octubre · 2026</p>
     <p style="margin-top:10px;">Con todo nuestro amor ♡</p>
   </footer>
@@ -1308,7 +1405,46 @@
 
     document.addEventListener("click", (e) => {
       if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) cerrarNav();
+      const calWrap = document.getElementById("calWrap");
+      if (calWrap && !calWrap.contains(e.target)) {
+        document.getElementById("calDropdown").classList.remove("open");
+      }
     });
+
+    function toggleCal() {
+      document.getElementById("calDropdown").classList.toggle("open");
+    }
+
+    function calGoogle() {
+      const url = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+        "&text=Boda%20Beatriz%20%26%20V%C3%ADctor" +
+        "&dates=20261010T153000Z%2F20261011T000000Z" +
+        "&details=Ceremonia%20a%20las%2018%3A00%20en%20Parroquia%20Santa%20Mar%C3%ADa%20Magdalena%20(Dos%20Hermanas).%20Celebraci%C3%B3n%20a%20las%2020%3A30%20en%20El%20Jard%C3%ADn%20Don%20Juan%20(Utrera)." +
+        "&location=Parroquia%20Santa%20Mar%C3%ADa%20Magdalena%2C%20Dos%20Hermanas";
+      window.open(url, "_blank");
+    }
+
+    function calICS() {
+      const lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Beatriz & Victor//Boda//ES",
+        "BEGIN:VEVENT",
+        "DTSTART:20261010T153000Z",
+        "DTEND:20261011T000000Z",
+        "SUMMARY:Boda Beatriz & Victor",
+        "DESCRIPTION:Ceremonia a las 18:00 en Parroquia Santa Maria Magdalena (Dos Hermanas). Celebracion a las 20:30 en El Jardin Don Juan (Utrera).",
+        "LOCATION:Parroquia Santa Maria Magdalena\\, Dos Hermanas",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+      const blob = new Blob([lines], { type: "text/calendar;charset=utf-8" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "boda-beatriz-victor.ics";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
   </script>
 
   <script>

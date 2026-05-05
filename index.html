@@ -80,16 +80,14 @@
       pointer-events: none;
     }
 
-    /* foto-splash.jpg = foto del reveal (sube la tuya)
-       Brindis-pareja.png = fallback si no existe foto-splash.jpg */
     .splash-bg {
       position: absolute;
       inset: 0;
-      background-color: var(--crema);
+      background-color: #1a0f06;
       background-image: url("Foto-Pose.jpg");
       background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
+      background-position: center top;
+      background-size: cover;
     }
 
     .splash-overlay {
@@ -205,15 +203,14 @@
       overflow: hidden;
     }
 
-    /* Foto del hero (puede ser diferente al splash) */
     .hero-bg {
       position: absolute;
       inset: 0;
-      background-color: var(--crema);
+      background-color: #1a0f06;
       background-image: url("Foto-Pose.jpg");
       background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
+      background-position: center top;
+      background-size: cover;
     }
 
     /* Overlay controlado por JS */
@@ -235,56 +232,6 @@
       justify-content: center;
       padding: 0 24px;
       gap: 0;
-    }
-
-    /* Fecha (aparece al scroll) */
-    #heroFecha {
-      text-align: center;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.35);
-      margin-bottom: 28px;
-      opacity: 0;
-      transform: translateY(14px);
-      will-change: opacity, transform;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .fecha-dia {
-      font-family: "Cormorant Garamond", serif;
-      font-style: italic;
-      font-size: clamp(2rem, 8vw, 3rem);
-      font-weight: 300;
-      color: rgba(255,255,255,0.95);
-      line-height: 1;
-      letter-spacing: 0.04em;
-    }
-
-    .fecha-mes {
-      font-family: "Cormorant Garamond", serif;
-      font-style: italic;
-      font-size: clamp(1.2rem, 5vw, 1.7rem);
-      font-weight: 300;
-      color: rgba(255,255,255,0.88);
-      letter-spacing: 0.1em;
-      text-transform: lowercase;
-    }
-
-    .fecha-sep {
-      width: 36px;
-      height: 1px;
-      background: rgba(255,255,255,0.5);
-      margin: 2px auto;
-    }
-
-    .fecha-hora {
-      font-family: "Lato", sans-serif;
-      font-size: clamp(0.7rem, 2.8vw, 0.88rem);
-      font-weight: 300;
-      color: rgba(255,255,255,0.7);
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
     }
 
     /* Contador circular (aparece al scroll) */
@@ -497,11 +444,29 @@
       min-height: 54px;
     }
 
+    .nav-marca-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1px;
+      text-decoration: none;
+    }
+
     .nav-marca {
       font-family: "Allura", cursive;
       font-size: 1.55rem;
       color: var(--marron);
       text-decoration: none;
+      line-height: 1;
+    }
+
+    .nav-fecha {
+      font-family: "Lato", sans-serif;
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      color: var(--gris);
+      text-transform: uppercase;
     }
 
     .nav-toggle {
@@ -948,14 +913,6 @@
       <div id="heroDynOverlay"></div>
       <div class="hero-inner">
 
-        <!-- Fecha (aparece en el primer tercio del scroll) -->
-        <div id="heroFecha">
-          <span class="fecha-dia">10</span>
-          <span class="fecha-mes">de octubre de 2026</span>
-          <div class="fecha-sep"></div>
-          <span class="fecha-hora">18:00 h</span>
-        </div>
-
         <!-- Contador circular -->
         <div id="heroCountdownWrap">
           <div class="cd-outer">
@@ -1006,7 +963,10 @@
 
   <!-- ══ NAV ══════════════════════════════════ -->
   <nav>
-    <a href="#" class="nav-marca">B &amp; V</a>
+    <a href="#" class="nav-marca-wrap">
+      <span class="nav-marca">B &amp; V</span>
+      <span class="nav-fecha">10 · 10 · 2026</span>
+    </a>
     <button class="nav-toggle" id="navToggle" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
@@ -1022,7 +982,6 @@
   <!-- ══ EL DÍA ════════════════════════════════ -->
   <section id="info">
     <div class="sec-header reveal">
-      <span class="sec-eyebrow">10 de octubre de 2026</span>
       <h2 class="sec-titulo">El día más especial</h2>
       <div class="linea"></div>
     </div>
@@ -1308,12 +1267,11 @@
        (= cuando window.scrollY va de 0 a 0.8 * innerHeight).
     ── */
     const heroDynOverlay     = document.getElementById("heroDynOverlay");
-    const heroFecha          = document.getElementById("heroFecha");
     const heroCountdownWrap  = document.getElementById("heroCountdownWrap");
     const heroScrollHint     = document.getElementById("heroScrollHint");
 
     function updateHeroScroll() {
-      const range    = 0.8 * window.innerHeight; // px de scroll para la animación completa
+      const range    = 0.8 * window.innerHeight;
       const progress = Math.min(1, window.scrollY / range);
 
       // Overlay: oscurece progresivamente
@@ -1322,13 +1280,8 @@
       // Pista de scroll: desaparece al empezar a deslizar
       heroScrollHint.style.opacity = Math.max(0, 1 - progress / 0.12);
 
-      // Fecha: aparece en el rango 0.28 → 0.55
-      const fp = Math.max(0, Math.min(1, (progress - 0.28) / 0.27));
-      heroFecha.style.opacity   = fp;
-      heroFecha.style.transform = `translateY(${(1 - fp) * 14}px)`;
-
-      // Contador: aparece en el rango 0.55 → 0.85
-      const cp = Math.max(0, Math.min(1, (progress - 0.55) / 0.30));
+      // Contador: aparece en el rango 0.30 → 0.70
+      const cp = Math.max(0, Math.min(1, (progress - 0.30) / 0.40));
       heroCountdownWrap.style.opacity   = cp;
       heroCountdownWrap.style.transform =
         `translateY(${(1 - cp) * 20}px) scale(${0.93 + cp * 0.07})`;

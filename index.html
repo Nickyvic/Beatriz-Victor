@@ -979,18 +979,13 @@
     </div>
   </div>
 
-  <!-- ══ MÚSICA FONDO ═════════════════════════
-       Sube un archivo "musica-fondo.mp3" a la
-       misma carpeta para activar la música.   -->
+  <!-- ══ MÚSICA FONDO ═════════════════════════ -->
   <audio id="bgMusic" loop preload="none">
     <source src="Mana-bendita-tu-luz.m4a" type="audio/mp4" />
   </audio>
   <button id="musicBtn" class="music-btn" aria-label="Música de fondo" title="Música de fondo">♪</button>
 
-  <!-- ══ HERO SCROLL ══════════════════════════
-       Foto del hero: Brindis-pareja.png
-       Para usar una foto diferente al splash,
-       cambia la URL en .hero-bg (CSS arriba).  -->
+  <!-- ══ HERO SCROLL ══════════════════════════ -->
   <div id="hero-wrap">
 
     <div id="hero-sticky">
@@ -1284,7 +1279,6 @@
   </script>
 
   <script>
-    /* ── Formulario por código de invitado ── */
     function setFormularioPorTipo() {
       const params = new URLSearchParams(window.location.search);
       const codigo = (params.get("c") || "").trim();
@@ -1357,12 +1351,7 @@
   </script>
 
   <script>
-    /* ── Hero scroll animation ──
-       El hero-sticky tiene 100vh.
-       El hero-wrap tiene 180vh.
-       La animación se ejecuta en los primeros 80vh de scroll
-       (= cuando window.scrollY va de 0 a 0.8 * innerHeight).
-    ── */
+    /* ── Hero scroll animation ──    ── */
     const heroDynOverlay     = document.getElementById("heroDynOverlay");
     const heroCountdownWrap  = document.getElementById("heroCountdownWrap");
     const heroScrollHint     = document.getElementById("heroScrollHint");
